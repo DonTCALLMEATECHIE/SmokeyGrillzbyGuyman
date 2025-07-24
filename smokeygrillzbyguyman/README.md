@@ -1,6 +1,6 @@
 # Smokey Grillz by Guyman
 
-A bold, retro BBQ website inspired by Papasgrill, featuring a custom palette, Marine Sikona font, and interactive menu.
+A bold, retro BBQ website, featuring a custom palette, Marine Sikona font, and interactive menu.
 
 ## Features
 
