@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="checkout-section">
+    <div class="checkout-card">
+        <h2>Checkout</h2>
+        <div class="checkout-details">
+            <img src="{{ url_for('static', filename='images/' + item.image) }}" alt="{{ item.name }}">
+            <div>
+                <strong>{{ item.name }}</strong><br>
+                Quantity: {{ qty }}<br>
+                Price: &#8358;{{ "{:,}".format(item.price) }}<br>
+                <strong>Total: &#8358;{{ "{:,}".format(item.price * qty) }}</strong>
+            </div>
+        </div>
+        <form method="POST" class="checkout-form">
+            <label for="name">Full Name</label>
+            <input type="text" name="name" id="name" required>
+            <label for="phone">Phone Number</label>
+            <input type="tel" name="phone" id="phone" required>
+            <label for="address">Delivery Address</label>
+            <textarea name="address" id="address" required></textarea>
+            <label for="notes">Order Notes (optional)</label>
+            <textarea name="notes" id="notes" rows="2"></textarea>
+            <button type="submit" class="menu-btn">Confirm & Pay</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

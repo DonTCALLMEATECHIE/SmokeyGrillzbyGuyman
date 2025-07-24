@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="order-section">
+    <div class="order-card">
+        <img src="{{ url_for('static', filename='images/' + item.image) }}" alt="{{ item.name }}">
+        <h2>{{ item.name }}</h2>
+        <form method="POST">
+            <label for="name">Your Name</label>
+            <input type="text" name="name" id="name" required>
+            <label for="phone">Phone Number</label>
+            <input type="tel" name="phone" id="phone" required>
+            <label for="qty">Quantity</label>
+            <input type="number" name="qty" id="qty" min="1" value="1" required>
+            <label for="notes">Order Notes (optional)</label>
+            <textarea id="notes" name="notes" rows="2"></textarea>
+            <div class="order-summary">
+                <span>Unit Price:</span>
+                <span>&#8358;{{ "{:,}".format(item.price) }}</span>
+            </div>
+            <button type="submit" class="menu-btn">Place Order</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

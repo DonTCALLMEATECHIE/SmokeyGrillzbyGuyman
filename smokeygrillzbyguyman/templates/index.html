@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero-section">
+    <div class="hero-content">
+        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo" class="hero-logo">
+        <h1 class="hero-title">Where every bite is <span class="highlight">a flavor </span> explosion!</h1>
+        <a href="/menu" class="hero-btn">View Menu</a>
+    </div>
+</section>
+<section class="home-menu-preview">
+    <h2 class="section-title">🔥 Popular Platters</h2>
+    <div class="menu-cards">
+        {% for item in menu[:3] %}
+        <div class="menu-card">
+            <img src="{{ url_for('static', filename='images/' + item.image) }}" alt="{{ item.name }}">
+            <div class="menu-card-body">
+                <h3>{{ item.name }}</h3>
+                <ul>
+                    {% for d in item.desc %}
+                    <li>{{ d }}</li>
+                    {% endfor %}
+                </ul>
+                <div class="menu-card-footer">
+                    <span class="menu-card-price">&#8358;{{ "{:,}".format(item.price) }}</span>
+                    <form action="{{ url_for('add_to_cart', item_id=item.id) }}" method="POST" class="order-inline-form">
+                        <input type="number" name="qty" min="1" value="1" class="mini-qty" required>
+                        <button type="submit" class="menu-btn">Order</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="centered"><a href="/menu" class="see-all-btn">See Full Menu</a></div>
+</section>
+{% endblock %}

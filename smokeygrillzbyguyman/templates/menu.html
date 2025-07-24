@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="menu-hero">
+    <div class="menu-hero-left">
+        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo" class="menu-logo">
+        <h1 class="menu-heading">BBQ<br><span>PLATTERS</span></h1>
+    </div>
+    <div class="menu-hero-right">
+        <img src="{{ url_for('static', filename='images/bbq-platter-main.jpg') }}" alt="BBQ Platter" class="platter-img">
+    </div>
+</section>
+<section class="platters-section">
+    <div class="platters-grid">
+        {% for item in menu %}
+        <div class="platter-card">
+            <img src="{{ url_for('static', filename='images/' + item.image) }}" alt="{{ item.name }}">
+            <h2>{{ item.name }}</h2>
+            <ul>
+                {% for desc in item.desc %}
+                <li>{{ desc }}</li>
+                {% endfor %}
+            </ul>
+            <div class="platter-footer">
+                <span class="platter-price">&#8358;{{ "{:,}".format(item.price) }}</span>
+                <form action="{{ url_for('add_to_cart', item_id=item.id) }}" method="POST" class="order-inline-form">
+                    <input type="number" name="qty" min="1" value="1" class="mini-qty" required>
+                    <button type="submit" class="menu-btn">Order</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="menu-contact">
+        IG: @smokeyGrillzbyGuyman<br>
+        09167301672
+    </div>
+    <div class="menu-footer-img">
+        <img src="{{ url_for('static', filename='images/bbq-platter-footer.jpg') }}" alt="BBQ Platter Footer">
+    </div>
+</section>
+{% endblock %}

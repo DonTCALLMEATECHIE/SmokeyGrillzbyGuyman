@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="confirm-section">
+    <div class="confirm-card">
+        <h2>Order Received!</h2>
+        <div class="confirm-details">
+            <img src="{{ url_for('static', filename='images/' + item.image) }}" alt="{{ item.name }}">
+            <div>
+                <strong>Item:</strong> {{ item.name }}<br>
+                <strong>Quantity:</strong> {{ qty }}<br>
+                <strong>Name:</strong> {{ name }}<br>
+                <strong>Phone:</strong> {{ phone }}<br>
+                {% if address %}
+                <strong>Address:</strong> {{ address }}<br>
+                {% endif %}
+                {% if notes %}
+                <strong>Notes:</strong> {{ notes }}<br>
+                {% endif %}
+                <strong>Total:</strong>
+                <span class="platter-price">&#8358;{{ "{:,}".format(item.price * qty) }}</span><br>
+            </div>
+        </div>
+        <div class="centered">
+            <a href="/" class="menu-btn">Back to Home</a>
+            <a href="/menu" class="menu-btn">Order More</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
